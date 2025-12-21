@@ -22,7 +22,7 @@ function getHumanChoice() {
 }
 
 function playGame() {
-  let rounds = 5;
+  const TOTAL_ROUNDS = 5;
   let humanScore = 0;
   let computerScore = 0;
 
@@ -46,7 +46,7 @@ function playGame() {
     }
   }
 
-  for (i = 0; i < rounds; i++) {
+  for (let i = 0; i < TOTAL_ROUNDS; i++) {
     playRound(getHumanChoice(), getComputerChoice());
   }
 
