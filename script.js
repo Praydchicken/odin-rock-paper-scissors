@@ -1,6 +1,3 @@
-let humanScore = 0;
-let computerScore = 0;
-
 function getComputerChoice() {
   const computerChoice = Math.floor(Math.random() * 3);
 
@@ -16,27 +13,49 @@ function getComputerChoice() {
 
 function getHumanChoice() {
   const humanChoice = prompt('Rock, Paper, or Scissors?');
+
+  if(humanChoice === null) {
+    return null;
+  }
+
   return humanChoice.toLowerCase().trim();
 }
 
-function playRound(humanChoice, computerChoice) {
-  if(humanChoice === computerChoice) {
-    return 'draw';
+function playGame() {
+  let rounds = 5;
+  let humanScore = 0;
+  let computerScore = 0;
+
+  function playRound(humanChoice, computerChoice) {
+    if(humanChoice === computerChoice) {
+      return alert(`both chose ${computerChoice}, DRAW!!`);
+    }
+
+    const humanWins = (
+      (humanChoice === 'rock' && computerChoice === 'scissors') ||
+      (humanChoice === 'paper' && computerChoice === 'rock') ||
+      (humanChoice === 'scissors' && computerChoice === 'paper')
+    );
+
+    if(humanWins) {
+      humanScore++;
+      alert(`${humanChoice} beats ${computerChoice}, PLAYER WINS!`);
+    } else {
+      computerScore++;
+      alert(`${computerChoice} beats ${humanChoice}, COMPUTER WINS!`);
+    }
   }
 
-  const humanWins = (
-    (humanChoice === 'rock' && computerChoice === 'scissors') ||
-    (humanChoice === 'paper' && computerChoice === 'rock') ||
-    (humanChoice === 'scissors' && computerChoice === 'paper')
-  );
+  for (i = 0; i < rounds; i++) {
+    playRound(getHumanChoice(), getComputerChoice());
+  }
 
-  if(humanWins) {
-    humanScore++;
-    return 'Player Wins!';
-  } else {
-    computerScore++;
-    return 'Computer Wins!';
+  if(humanScore === computerScore){
+    alert('Draw');
+  } else if (humanScore > computerScore) {
+    alert(`Player Wins the game!
+      Player: ${humanScore} Computer: ${computerScore}`);
   }
 }
 
-playRound(getHumanChoice(), getComputerChoice());
+playGame();
