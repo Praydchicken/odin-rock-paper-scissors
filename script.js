@@ -55,6 +55,9 @@ function playGame() {
   } else if (humanScore > computerScore) {
     alert(`Player Wins the game!
       Player: ${humanScore} Computer: ${computerScore}`);
+  } else {
+    alert(`Computer Wins the game!
+      Player: ${humanScore} Computer: ${computerScore}`);
   }
 }
 
