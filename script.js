@@ -1,3 +1,10 @@
+const game = {
+	TOTAL_ROUNDS: 5,
+	ties: 0,
+	wins: 0,
+	loss: 0
+}
+
 function getComputerChoice() {
   const computerChoice = Math.floor(Math.random() * 3);
 
@@ -29,42 +36,37 @@ function doesHumanWin(humanChoice, computerChoice) {
 	);
 }
 
-function playGame() {
-  const TOTAL_ROUNDS = 5;
-  let humanScore = 0;
-  let computerScore = 0;
-
-  function playRound(humanChoice, computerChoice) {
+function playRound(humanChoice, computerChoice) {
 		let result = '';
 
-    if (humanChoice === computerChoice) {
+  if (humanChoice === computerChoice) {
+			game.ties++;
 			result = 'DRAW';
-    } else if (doesHumanWin(humanChoice, computerChoice)) {
-      humanScore++;
+  } else if (doesHumanWin(humanChoice, computerChoice)) {
+    game.wins++;
 			result = 'PLAYER WINS!';
-    } else {
-      computerScore++;
-      result = 'COMPUTER WINS'
-    }
+  } else {
+    game.loss++;
+    result = 'COMPUTER WINS'
+  }
 
 		alert(`You pick ${humanChoice}, Computer picks ${computerChoice}. ${result}`);
+}
+
+function playGame() {
+  for (let i = 0; i < game.TOTAL_ROUNDS; i++) {
+	 	const humanChoice = getHumanChoice();
+
+		if(humanChoice === null) {
+			alert('GAME CANCELLED, INVALID INPUT');
+			return;
+		}
+
+		const computerChoice = getComputerChoice()
+
+    playRound(humanChoice, computerChoice);
   }
 
-  for (let i = 0; i < TOTAL_ROUNDS; i++) {
-    playRound(getHumanChoice(), getComputerChoice());
-  }
-
-  if (humanScore === computerScore) {
-    alert("Draw");
-  }
-
-  if (humanScore > computerScore) {
-    alert(`Player Wins the game!
-      Player: ${humanScore} Computer: ${computerScore}`);
-  } else {
-    alert(`Computer Wins the game!
-      Player: ${humanScore} Computer: ${computerScore}`);
-  }
 }
 
 playGame();
