@@ -37,7 +37,7 @@ function doesHumanWin(humanChoice, computerChoice) {
 }
 
 function playRound(humanChoice, computerChoice) {
-		let result = '';
+	let result = '';
 
   if (humanChoice === computerChoice) {
 			game.ties++;
@@ -50,7 +50,7 @@ function playRound(humanChoice, computerChoice) {
     result = 'COMPUTER WINS'
   }
 
-		alert(`You pick ${humanChoice}, Computer picks ${computerChoice}. ${result}`);
+	alert(`You pick ${humanChoice}, Computer picks ${computerChoice}. ${result}`);
 }
 
 function playGame() {
@@ -66,7 +66,6 @@ function playGame() {
 
     playRound(humanChoice, computerChoice);
   }
-
 }
 
 playGame();
