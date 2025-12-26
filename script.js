@@ -35,17 +35,19 @@ function playGame() {
   let computerScore = 0;
 
   function playRound(humanChoice, computerChoice) {
-    if (humanChoice === computerChoice) {
-      return alert(`both chose ${computerChoice}, DRAW!!`);
-    }
+		let result = '';
 
-    if (doesHumanWin(humanChoice, computerChoice)) {
+    if (humanChoice === computerChoice) {
+			result = 'DRAW';
+    } else if (doesHumanWin(humanChoice, computerChoice)) {
       humanScore++;
-      alert(`${humanChoice} beats ${computerChoice}, PLAYER WINS!`);
+			result = 'PLAYER WINS!';
     } else {
       computerScore++;
-      alert(`${computerChoice} beats ${humanChoice}, COMPUTER WINS!`);
+      result = 'COMPUTER WINS'
     }
+
+		alert(`You pick ${humanChoice}, Computer picks ${computerChoice}. ${result}`);
   }
 
   for (let i = 0; i < TOTAL_ROUNDS; i++) {
