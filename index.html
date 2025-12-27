@@ -8,38 +8,45 @@
 	<!--<script src="script.js"></script>-->
 </head>
 <body>
-	<div class="game__header">
-		<div>
-			<h1>Round</h1>
-			<p>1 of 5</p>
-		</div>
-		<div class="game__score">
-			<div>
-				<h2>WINS</h2>
-				<p>0</p>
+	<div class="game">
+		<div class="header">
+			<div class="header__round">
+				<h1>Round</h1>
+				<p>1 of 5</p>
 			</div>
-			<div>
-				<h2>TIES</h2>
-				<p>0</p>
-			</div>
-			<div>
-				<h2>LOSSES</h2>
-				<p>0</p>
-			</div>
-		</div>
-	</div>
 
-	<div class="game__choices">
-		<h3 class="human__choice">👊</h3>
-		<h2 class="result">YOU WIN!</h2>
-		<h3 class="computer__choice">✌️</h3>
-	</div>
+			<div class="score">
+				<div class="score__item">
+					<h2>WINS</h2>
+					<p>0</p>
+				</div>
 
-	<div class="game__buttons">
-		<button>Rock</button>
-		<button>Paper</button>
-		<button>Scissors</button>
-		<button>Restart Game</button>
+				<div class="score__item">
+					<h2>TIES</h2>
+					<p>0</p>
+				</div>
+
+				<div class="score__item">
+					<h2>LOSSES</h2>
+					<p>0</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="choice">
+			<h3 class="choice__human">👊</h3>
+			<h2 class="result">YOU WIN!</h2>
+			<h3 class="choice__computer">✌️</h3>
+		</div>
+
+		<div class="controls">
+			<div class="controls__buttons">
+				<button>👊 Rock</button>
+				<button>✋ Paper</button>
+				<button>✌️ Scissors</button>
+			</div>
+			<button class="restart">Restart Game</button>
+		</div>
 	</div>
 
 </body>

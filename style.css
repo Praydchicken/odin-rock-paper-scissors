@@ -18,6 +18,7 @@
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  background-color: #121212;
 }
 
 img, picture, video, canvas, svg {
@@ -31,6 +32,8 @@ input, button, textarea, select {
 
 p, h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
+  font-family: 'arial';
+  color: #F8FAFC;
 }
 
 p {
@@ -40,6 +43,102 @@ h1, h2, h3, h4, h5, h6 {
   text-wrap: balance;
 }
 
+button {
+	font-size: 1.25rem;
+	font-weight: 500;
+	font-family: 'arial';
+	border: none;
+	border-radius: 20px;
+	padding: 16px;
+}
+
 #root, #__next {
   isolation: isolate;
+}
+
+.game {
+	max-inline-size: 1000px;
+	margin: 0 auto;
+}
+
+.header {
+	background-color: #1E293B;
+}
+
+.header__round {
+	text-align: center;
+}
+
+.score {
+	display: flex;
+	gap: 16px;
+	padding: 16px;
+	justify-content: space-around;
+	text-align: center;
+}
+
+.score__item {
+	flex: 1;
+	padding: 16px;
+	border-radius: 12px;
+	background-color:#7C3AED;
+}
+
+.score__item p {
+	font-size: 1.25rem;
+	font-weight: 700;
+}
+
+.choice {
+	background-color: #334155;
+	display: flex;
+	align-items: center;
+	padding: 20px;
+}
+
+.choice > * {
+	flex: 1;
+	text-align: center;
+}
+
+.choice__human,
+.choice__computer {
+	font-size: 200px;
+}
+
+.result {
+	font-size: 100px;
+}
+
+.controls {
+	padding: 18px;
+	display: flex;
+	flex-direction: column;
+	background-color: #1E293B;
+}
+
+.controls__buttons {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	padding: 20px;
+	justify-content: space-around;
+}
+
+.controls__buttons button {
+	flex: 1;
+	background-color: #475569;
+	color: #F8FAFC;
+}
+
+.controls__buttons button:hover,
+.controls__buttons button:focus-visible {
+  background-color: #7C3AED;
+  color: #F8FAFC;
+  box-shadow: 0 10px 20px rgba(124, 58, 237, 0.3);
+  transition: all 0.2s ease-in-out;
+}
+
+.restart {
+	background-color: #10B981 ;
 }
