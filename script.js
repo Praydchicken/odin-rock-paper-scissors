@@ -3,9 +3,17 @@ const winElement = document.querySelector('.js-wins');
 const tieElement = document.querySelector('.js-ties');
 const lossesElement = document.querySelector('.js-losses');
 
+const rockBtn = document.querySelector('js-btn-rock');
+const paperBtn = document.querySelector('js-btn-paper');
+const scissorsBtn = document.querySelector('js-btn-scissors');
+
+rockBtn.addEventListener('click', () => playRound('rock'));
+paperBtn.addEventListener('click', () => playRound('paper'));
+scissorsBtn.addEventListener('click', () => playRound('scissors'));
+
 const game = {
 	TOTAL_ROUNDS: 5,
-	currentRound: 0,
+	currentRound: 1,
 	ties: 0,
 	wins: 0,
 	losses: 0
@@ -42,36 +50,10 @@ function doesHumanWin(humanChoice, computerChoice) {
 	);
 }
 
-function playRound(humanChoice, computerChoice) {
-	let result = '';
-
-  if (humanChoice === computerChoice) {
-			game.ties++;
-			result = 'DRAW';
-  } else if (doesHumanWin(humanChoice, computerChoice)) {
-    game.wins++;
-		result = 'PLAYER WINS!';
-  } else {
-    game.losses++;
-    result = 'COMPUTER WINS'
-  }
-}
-
-function playGame() {
-  for (let i = 0; i < game.TOTAL_ROUNDS; i++) {
-	 	const humanChoice = getHumanChoice();
-
-		if(humanChoice === null) {
-			alert('GAME CANCELLED, INVALID INPUT');
-			return;
-		}
-
-		const computerChoice = getComputerChoice()
-
-    playRound(humanChoice, computerChoice);
-
-		updateUi();
-  }
+function playRound(humanChoice) {
+	if(game.currentRound >= game.TOTAL_ROUNDS) {
+		return;
+	}
 
 
 }
@@ -82,5 +64,3 @@ function updateUi() {
 	tieElement.textContent = game.ties;
 	lossesElement.textContent = game.losses;
 }
-
-playGame();
