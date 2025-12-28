@@ -3,17 +3,18 @@ const winElement = document.querySelector('.js-wins');
 const tieElement = document.querySelector('.js-ties');
 const lossesElement = document.querySelector('.js-losses');
 
-const rockBtn = document.querySelector('js-btn-rock');
-const paperBtn = document.querySelector('js-btn-paper');
-const scissorsBtn = document.querySelector('js-btn-scissors');
+const rockBtn = document.querySelector('.js-btn-rock');
+const paperBtn = document.querySelector('.js-btn-paper');
+const scissorsBtn = document.querySelector('.js-btn-scissors');
 
 rockBtn.addEventListener('click', () => playRound('rock'));
 paperBtn.addEventListener('click', () => playRound('paper'));
 scissorsBtn.addEventListener('click', () => playRound('scissors'));
 
 const game = {
-	TOTAL_ROUNDS: 5,
+	TOTAL_ROUNDS: 10,
 	currentRound: 1,
+	result: '',
 	ties: 0,
 	wins: 0,
 	losses: 0
@@ -32,16 +33,6 @@ function getComputerChoice() {
   }
 }
 
-function getHumanChoice() {
-  const humanChoice = prompt("Rock, Paper, or Scissors?");
-
-  if (humanChoice === null) {
-    return null;
-  }
-
-  return humanChoice.toLowerCase().trim();
-}
-
 function doesHumanWin(humanChoice, computerChoice) {
 	return (
 		(humanChoice === "rock" && computerChoice === "scissors") ||
@@ -55,7 +46,21 @@ function playRound(humanChoice) {
 		return;
 	}
 
+	const computerChoice = getComputerChoice();
 
+	if(humanChoice === computerChoice) {
+		game.result = 'DRAW!';
+		game.ties++;
+	} else if (doesHumanWin(humanChoice, computerChoice)) {
+		game.result = 'YOU WIN';
+		game.wins++;
+	} else {
+		game.result = 'YOU LOSE';
+		game.losses++;
+	}
+
+	game.currentRound++;
+	updateUi();
 }
 
 function updateUi() {
