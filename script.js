@@ -1,8 +1,14 @@
+const currentRoundElement = document.querySelector('.js-round-number');
+const winElement = document.querySelector('.js-wins');
+const tieElement = document.querySelector('.js-ties');
+const lossesElement = document.querySelector('.js-losses');
+
 const game = {
 	TOTAL_ROUNDS: 5,
+	currentRound: 0,
 	ties: 0,
 	wins: 0,
-	loss: 0
+	losses: 0
 }
 
 function getComputerChoice() {
@@ -44,13 +50,11 @@ function playRound(humanChoice, computerChoice) {
 			result = 'DRAW';
   } else if (doesHumanWin(humanChoice, computerChoice)) {
     game.wins++;
-			result = 'PLAYER WINS!';
+		result = 'PLAYER WINS!';
   } else {
-    game.loss++;
+    game.losses++;
     result = 'COMPUTER WINS'
   }
-
-	alert(`You pick ${humanChoice}, Computer picks ${computerChoice}. ${result}`);
 }
 
 function playGame() {
@@ -65,7 +69,18 @@ function playGame() {
 		const computerChoice = getComputerChoice()
 
     playRound(humanChoice, computerChoice);
+
+		updateUi();
   }
+
+
+}
+
+function updateUi() {
+	currentRoundElement.textContent = game.currentRound;
+	winElement.textContent = game.wins;
+	tieElement.textContent = game.ties;
+	lossesElement.textContent = game.losses;
 }
 
 playGame();
