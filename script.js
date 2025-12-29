@@ -63,7 +63,7 @@ function playRound(humanChoice) {
 	if (humanChoice === computerChoice) {
 		game.ties++;
 	} else if (doesHumanWin(humanChoice, computerChoice)) {
-		game.result = 'YOU WIN';
+		game.playerScore++;
 	} else {
 		game.computerScore++;
 	}
