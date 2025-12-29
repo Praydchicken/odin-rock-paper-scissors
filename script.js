@@ -6,6 +6,7 @@ const finalResultElement = document.querySelector('.js-final-result');
 const controlElement = document.querySelector('.controls__buttons');
 const playerMoveElement = document.querySelector('.js-player-move');
 const computerMoveElement = document.querySelector('.js-computer-move');
+const restartButtonElement = document.querySelector('#js-restart');
 
 controlElement.addEventListener('click', (event) => {
 	switch (event.target.id) {
@@ -20,6 +21,12 @@ controlElement.addEventListener('click', (event) => {
 			break;
 	}
 });
+
+restartButtonElement.addEventListener('click', () => {
+	resetGame();
+});
+
+
 
 const game = {
 	round: 0,
@@ -61,6 +68,17 @@ function determineWinner() {
 	}
 }
 
+function resetGame() {
+	game.round = 0;
+	game.playerScore = 0;
+	game.computerScore = 0;
+	game.ties = 0;
+	game.finalResult = '';
+	game.isGameOver = false;
+
+	updateUi();
+}
+
 function playRound(humanChoice) {
 	if(game.isGameOver) {
 		return;
@@ -86,7 +104,7 @@ function updateUi(humanChoice, computerChoice) {
 	playerScoreElement.textContent = game.playerScore;
 	tieElement.textContent = game.ties;
 	computerScoreElement.textContent = game.computerScore;
-	playerMoveElement.textContent = choices[humanChoice];
-	computerMoveElement.textContent = choices[computerChoice];
+	playerMoveElement.textContent = choices[humanChoice] ?? '❓';
+	computerMoveElement.textContent = choices[computerChoice] ?? '❓';
 	finalResultElement.textContent = game.finalResult;
 }
