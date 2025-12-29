@@ -1,23 +1,32 @@
 const currentRoundElement = document.querySelector('.js-round-number');
-const winElement = document.querySelector('.js-wins');
+const playerScoreElement = document.querySelector('.js-wins');
 const tieElement = document.querySelector('.js-ties');
-const lossesElement = document.querySelector('.js-losses');
+const computerScoreElement = document.querySelector('.js-losses');
+const finalResultElement = document.querySelector('.js-final-result');
+const controlElement = document.querySelector('.controls__buttons');
 
-const rockBtn = document.querySelector('.js-btn-rock');
-const paperBtn = document.querySelector('.js-btn-paper');
-const scissorsBtn = document.querySelector('.js-btn-scissors');
-
-rockBtn.addEventListener('click', () => playRound('rock'));
-paperBtn.addEventListener('click', () => playRound('paper'));
-scissorsBtn.addEventListener('click', () => playRound('scissors'));
+controlElement.addEventListener('click', (event) => {
+	switch (event.target.id) {
+		case 'js-rock':
+			playRound('rock');
+			break;
+		case 'js-paper':
+			playRound('paper');
+			break;
+		case 'js-scissors':
+			playRound('scissors');
+			break;
+	}
+});
 
 const game = {
-	TOTAL_ROUNDS: 10,
-	currentRound: 1,
-	result: '',
+	round: 1,
+	playerScore: 0,
+	computerScore: 0,
 	ties: 0,
-	wins: 0,
-	losses: 0
+	result: '',
+	finalResult: '',
+	isGameOver: false
 }
 
 function getComputerChoice() {
@@ -41,31 +50,44 @@ function doesHumanWin(humanChoice, computerChoice) {
 	);
 }
 
+function determineWinner() {
+	if (game.playerScore === 5) {
+		game.finalResult = 'PLAYER WINS!';
+		game.isGameOver = true;
+	} else if (game.computerScore === 5) {
+		game.finalResult = 'COMPUTER WINS!';
+		game.isGameOver = true;
+	}
+}
+
 function playRound(humanChoice) {
-	if(game.currentRound >= game.TOTAL_ROUNDS) {
+	if(game.isGameOver) {
+		updateUi();
 		return;
 	}
 
 	const computerChoice = getComputerChoice();
 
-	if(humanChoice === computerChoice) {
+	if (humanChoice === computerChoice) {
 		game.result = 'DRAW!';
 		game.ties++;
 	} else if (doesHumanWin(humanChoice, computerChoice)) {
 		game.result = 'YOU WIN';
-		game.wins++;
+		game.playerScore++;
 	} else {
 		game.result = 'YOU LOSE';
-		game.losses++;
+		game.computerScore++;
 	}
 
-	game.currentRound++;
+	game.round++;
+	determineWinner();
 	updateUi();
 }
 
 function updateUi() {
-	currentRoundElement.textContent = game.currentRound;
-	winElement.textContent = game.wins;
+	currentRoundElement.textContent = game.round;
+	playerScoreElement.textContent = game.playerScore;
 	tieElement.textContent = game.ties;
-	lossesElement.textContent = game.losses;
+	computerScoreElement.textContent = game.computerScore;
+	finalResultElement.textContent = game.finalResult;
 }
