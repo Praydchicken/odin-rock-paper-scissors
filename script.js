@@ -4,6 +4,8 @@ const tieElement = document.querySelector('.js-ties');
 const computerScoreElement = document.querySelector('.js-losses');
 const finalResultElement = document.querySelector('.js-final-result');
 const controlElement = document.querySelector('.controls__buttons');
+const playerMoveElement = document.querySelector('.js-player-move');
+const computerMoveElement = document.querySelector('.js-computer-move');
 
 controlElement.addEventListener('click', (event) => {
 	switch (event.target.id) {
@@ -20,13 +22,19 @@ controlElement.addEventListener('click', (event) => {
 });
 
 const game = {
-	round: 1,
+	round: 0,
 	playerScore: 0,
 	computerScore: 0,
 	ties: 0,
 	finalResult: '',
 	isGameOver: false
 }
+
+const choices = {
+		rock: '👊',
+		paper: '✋',
+		scissors: '✌️'
+	};
 
 function getComputerChoice() {
 	const computerChoices = ['rock', 'paper', 'scissors'];
@@ -68,15 +76,17 @@ function playRound(humanChoice) {
 		game.computerScore++;
 	}
 
-	game.round++;
 	determineWinner();
-	updateUi();
+	updateUi(humanChoice, computerChoice);
+	game.round++;
 }
 
-function updateUi() {
-	currentRoundElement.textContent = game.round;
+function updateUi(humanChoice, computerChoice) {
+	currentRoundElement.textContent = game.round + 1;
 	playerScoreElement.textContent = game.playerScore;
 	tieElement.textContent = game.ties;
 	computerScoreElement.textContent = game.computerScore;
+	playerMoveElement.textContent = choices[humanChoice];
+	computerMoveElement.textContent = choices[computerChoice];
 	finalResultElement.textContent = game.finalResult;
 }
