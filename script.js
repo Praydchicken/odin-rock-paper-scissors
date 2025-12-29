@@ -24,7 +24,6 @@ const game = {
 	playerScore: 0,
 	computerScore: 0,
 	ties: 0,
-	result: '',
 	finalResult: '',
 	isGameOver: false
 }
@@ -56,20 +55,16 @@ function determineWinner() {
 
 function playRound(humanChoice) {
 	if(game.isGameOver) {
-		updateUi();
 		return;
 	}
 
 	const computerChoice = getComputerChoice();
 
 	if (humanChoice === computerChoice) {
-		game.result = 'DRAW!';
 		game.ties++;
 	} else if (doesHumanWin(humanChoice, computerChoice)) {
 		game.result = 'YOU WIN';
-		game.playerScore++;
 	} else {
-		game.result = 'YOU LOSE';
 		game.computerScore++;
 	}
 
