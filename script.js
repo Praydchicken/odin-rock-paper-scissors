@@ -30,16 +30,10 @@ const game = {
 }
 
 function getComputerChoice() {
-  const computerChoice = Math.floor(Math.random() * 3);
+	const computerChoices = ['rock', 'paper', 'scissors'];
+  const randomIndex = Math.floor(Math.random() * 3);
 
-  switch (computerChoice) {
-    case 0:
-      return "rock";
-    case 1:
-      return "paper";
-    case 2:
-      return "scissors";
-  }
+	return computerChoices[randomIndex];
 }
 
 function doesHumanWin(humanChoice, computerChoice) {

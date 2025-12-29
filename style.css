@@ -50,6 +50,7 @@ button {
 	border: none;
 	border-radius: 20px;
 	padding: 16px;
+  cursor: pointer;
 }
 
 #root, #__next {
@@ -65,8 +66,13 @@ button {
 	background-color: #1E293B;
 }
 
-.header__round {
+.header__rounds {
 	text-align: center;
+}
+
+.header__round-number {
+	font-size: 2em;
+	font-weight: 700;
 }
 
 .score {
@@ -85,8 +91,17 @@ button {
 }
 
 .score__item p {
-	font-size: 1.25rem;
+	font-size: 2em;
 	font-weight: 700;
+	margin-block-start: 12px;
+}
+
+.score__item--player {
+	background-color: #54c65f;
+}
+
+.score__item--computer {
+	background-color:  #db684b;
 }
 
 .choice {
@@ -107,7 +122,8 @@ button {
 }
 
 .result {
-	font-size: 100px;
+	text-wrap: wrap;
+	font-size: 3.2em;
 }
 
 .controls {
@@ -141,4 +157,10 @@ button {
 
 .restart {
 	background-color: #10B981 ;
+}
+
+.restart:hover,
+.restart:focus-visible {
+	background-color: #7C3AED;
+	color: #F8FAFC;
 }

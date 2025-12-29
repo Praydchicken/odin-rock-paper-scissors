@@ -5,49 +5,43 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Rock, Paper, Scissors</title>
 	<link rel="stylesheet" href="style.css">
-	<!--<script src="script.js"></script>-->
+	<script src="script.js" defer></script>
 </head>
 <body>
 	<div class="game">
 		<div class="header">
-			<div class="header__round">
+			<div class="header__rounds">
 				<h1>Round</h1>
-				<p>1 of 5</p>
+				<p class="header__round-number js-round-number">1</p>
 			</div>
-
 			<div class="score">
-				<div class="score__item">
-					<h2>WINS</h2>
-					<p>0</p>
+				<div class="score__item score__item--player">
+					<h2>YOU</h2>
+					<p class="js-wins">0</p>
 				</div>
-
 				<div class="score__item">
 					<h2>TIES</h2>
-					<p>0</p>
+					<p class="js-ties">0</p>
 				</div>
-
-				<div class="score__item">
-					<h2>LOSSES</h2>
-					<p>0</p>
+				<div class="score__item score__item--computer">
+					<h2>COMPUTER</h2>
+					<p class="js-losses">0</p>
 				</div>
 			</div>
 		</div>
-
 		<div class="choice">
 			<h3 class="choice__human">👊</h3>
-			<h2 class="result">YOU WIN!</h2>
+			<h2 class="result js-final-result"></h2>
 			<h3 class="choice__computer">✌️</h3>
 		</div>
-
 		<div class="controls">
 			<div class="controls__buttons">
-				<button>👊 Rock</button>
-				<button>✋ Paper</button>
-				<button>✌️ Scissors</button>
+				<button class="js-btn-rock" id="js-rock">👊 Rock</button>
+				<button class="js-btn-paper" id="js-paper">✋ Paper</button>
+				<button class="js-btn-scissors" id="js-scissors">✌️ Scissors</button>
 			</div>
 			<button class="restart">Restart Game</button>
 		</div>
 	</div>
-
 </body>
 </html>
