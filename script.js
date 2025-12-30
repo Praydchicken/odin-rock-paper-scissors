@@ -9,7 +9,13 @@ const computerMoveElement = document.querySelector('.js-computer-move');
 const restartButtonElement = document.querySelector('#js-restart');
 
 controlElement.addEventListener('click', (event) => {
-	switch (event.target.id) {
+	const btn = event.target.closest('button');
+
+	if (!btn) {
+		return;
+	}
+
+	switch (btn.id) {
 		case 'js-rock':
 			playRound('rock');
 			break;
